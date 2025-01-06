@@ -1,4 +1,4 @@
-package fr.mb.auth;
+package fr.mb.auth.config;
 
 import java.io.IOException;
 import javax.sql.DataSource;
@@ -8,10 +8,10 @@ import io.zonky.test.db.postgres.embedded.EmbeddedPostgres;
 
 @TestConfiguration
 public class EmbeddedPostgresConfig {
-    
-     @Bean
-    DataSource dataSource() throws IOException {
-	        EmbeddedPostgres embeddedPostgres = EmbeddedPostgres.builder().start();
-	        return embeddedPostgres.getPostgresDatabase();
-	    }
+
+	@Bean
+	DataSource dataSource() throws IOException {
+		EmbeddedPostgres embeddedPostgres = EmbeddedPostgres.builder().start();
+		return embeddedPostgres.getPostgresDatabase();
+	}
 }
