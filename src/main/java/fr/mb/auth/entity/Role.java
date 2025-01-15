@@ -1,23 +1,26 @@
 package fr.mb.auth.entity;
 
+import fr.mb.auth.enumeration.RoleName;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.NotNull;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
 @NoArgsConstructor
-@RequiredArgsConstructor
+@ToString
+@EqualsAndHashCode
 @Entity
 @Table(name = "role")
 public class Role {
@@ -27,9 +30,12 @@ public class Role {
 	@Column(name = "role_id")
 	private Integer roleId;
 
-	@NonNull
-	@NotBlank
-	@Pattern(regexp = "^ROLE_[A-Z]+$")
-	@Column(name = "role_name", nullable = false, unique = true)
-	private String roleName;
+	@Enumerated(EnumType.STRING)
+    @Column(name = "role_name", nullable = false, unique = true)
+	@NotNull
+	private RoleName roleName;
+	
+	public Role(RoleName roleName) {
+	    this.roleName = roleName;
+	}
 }
