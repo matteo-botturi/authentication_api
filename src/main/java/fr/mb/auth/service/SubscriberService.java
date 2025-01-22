@@ -5,6 +5,7 @@ import org.springframework.transaction.annotation.Transactional;
 import fr.mb.auth.dto.SubscriberRequestDTO;
 import fr.mb.auth.entity.Role;
 import fr.mb.auth.entity.Subscriber;
+import fr.mb.auth.enumeration.RoleName;
 import fr.mb.auth.repository.RoleRepository;
 import fr.mb.auth.repository.SubscriberRepository;
 
@@ -31,7 +32,7 @@ public class SubscriberService {
         }
 
         // Recupera il ruolo predefinito (ROLE_USER)
-        Role defaultRole = roleRepository.findByRoleName("ROLE_USER")
+        Role defaultRole = roleRepository.findByRoleName(RoleName.ROLE_USER)
             .orElseThrow(() -> new IllegalArgumentException("Default role not found"));
 
         // Crea un nuovo Subscriber
